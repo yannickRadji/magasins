@@ -28,11 +28,13 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Flyway
-        run: |
-          curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.15.0/flyway-commandline-11.15.0-linux-x64.tar.gz
-          tar -xzf flyway.tar.gz
-          echo "$PWD/flyway-11.15.0" >> $GITHUB_PATH
+      - name: Setup Flyway CLI
+        uses: red-gate/setup-flyway@v1
+        with:
+          version: '11.15.0'
+          edition: community
+          platform: linux
+          architecture: x64
 
       - name: Flyway migrate (DEV)
         run: flyway -configFiles=flyway/conf/dev.conf -locations=filesystem:flyway/migrations/versioned clean -X migrate info
@@ -61,11 +63,13 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Flyway
-        run: |
-          curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.15.0/flyway-commandline-11.15.0-linux-x64.tar.gz
-          tar -xzf flyway.tar.gz
-          echo "$PWD/flyway-11.15.0" >> $GITHUB_PATH
+      - name: Setup Flyway CLI
+        uses: red-gate/setup-flyway@v1
+        with:
+          version: '11.15.0' 
+          edition: community
+          platform: linux
+          architecture: x64
 
       - name: Flyway migrate (PROD)
         run: flyway -configFiles=flyway/conf/prod.conf -locations=filesystem:flyway/migrations/versioned clean -X migrate info
