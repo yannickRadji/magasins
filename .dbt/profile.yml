@@ -5,7 +5,7 @@ magasins_snowflake:
       type: snowflake
       account: QYXYVFY-BE09150
       user: YANNICK_RADJI
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      password: "{{ env_var('FLYWAY_PASSWORD') }}"
       role: ROLE_YANNICK_RADJI
       database: DWH_DEV_YANNICK
       warehouse: COMPUTE_WH
@@ -17,7 +17,7 @@ magasins_snowflake:
       type: snowflake
       account: QYXYVFY-BE09150
       user: YANNICK_RADJI
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      password: "{{ env_var('FLYWAY_PASSWORD') }}"
       role: ROLE_YANNICK_RADJI
       database: DWH_PROD_YANNICK
       warehouse: COMPUTE_WH

@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DBT_PROFILES_DIR: ./.dbt
+      FLYWAY_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      
     steps:
       - uses: actions/checkout@v4
 
