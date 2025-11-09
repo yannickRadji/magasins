@@ -14,7 +14,6 @@ on:
 
 jobs:
   deploy_dev:
-    needs: ci
     if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     env:
@@ -48,7 +47,6 @@ jobs:
         run: flyway -configFiles=flyway/conf/dev.conf -locations=filesystem:flyway/migrations/repeatable -X migrate info
 
   deploy_prod:
-    needs: ci
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
