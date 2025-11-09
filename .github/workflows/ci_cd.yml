@@ -5,19 +5,20 @@ on:
     branches: [develop, main]
   pull_request:
     branches: [develop]
-  workflow_call:
+  workflow_dispatch:
     inputs:
-      ref:
-        description: 'tag version or commit to deploy (this is not implemented yet so will deploy the last commit of the branch)'
-        required: false
-        type: string
-
+      environment:
+        description: "tag version or commit to deploy (this is not implemented yet so will deploy the last commit of the branch)"
+        type: choice
+        default: "dev"
+        options:
+          - dev
+          - prod
 jobs:
   deploy_dev:
     if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     env:
-      DBT_PROFILES_DIR: ./.dbt
       SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
       JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
       JDK_JAVA_OPTIONS:  "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
@@ -56,7 +57,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
-      DBT_PROFILES_DIR: ./.dbt
       SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
       JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
       JDK_JAVA_OPTIONS:  "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
@@ -86,7 +86,7 @@ jobs:
         run: dbt clean
 
       - name: dbt build (PROD)
-        run: dbt build -x --target dev
+        run: dbt build -x --target prod
 
       - name: Attach policies (PROD)
         run: flyway -configFiles=flyway/conf/prod.conf -locations=filesystem:flyway/migrations/repeatable -X migrate info
