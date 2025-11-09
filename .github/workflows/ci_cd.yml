@@ -18,7 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DBT_PROFILES_DIR: ./.dbt
-      FLYWAY_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
+      JDK_JAVA_OPTIONS:  "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
       
     steps:
       - uses: actions/checkout@v4
@@ -55,7 +57,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DBT_PROFILES_DIR: ./.dbt
-      FLYWAY_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      JAVA_TOOL_OPTIONS: "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
+      JDK_JAVA_OPTIONS:  "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED"
+
     steps:
       - uses: actions/checkout@v4
 
