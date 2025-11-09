@@ -1,0 +1,7 @@
+version: 2
+models:
+  - name: dim_magasins
+    description: "Gold secure view; current stores with RLS (region) + masking"
+    columns:
+      - name: magasin_id
+        tests: [not_null, unique]

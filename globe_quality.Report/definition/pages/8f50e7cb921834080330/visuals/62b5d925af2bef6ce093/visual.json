@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "62b5d925af2bef6ce093",
+  "position": {
+    "x": 0,
+    "y": 471.82004089979552,
+    "z": 3000,
+    "height": 248.01635991820041,
+    "width": 356.64621676891619,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "BAD_GEO"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.BAD_GEO",
+              "nativeQueryRef": "BAD_GEO"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MAGASINS_QUALITY_KPI"
+                        }
+                      },
+                      "Property": "BAD_GEO"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Sum(MAGASINS_QUALITY_KPI.BAD_GEO)",
+              "nativeQueryRef": "Count of BAD_GEO"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "MAGASINS_QUALITY_KPI"
+                      }
+                    },
+                    "Property": "BAD_GEO"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BAD_GEO=1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Valid geography coordinates'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

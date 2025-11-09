@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "ad9b3863b24e85d62c93",
+  "position": {
+    "x": 702,
+    "y": 472,
+    "z": 5000,
+    "height": 248,
+    "width": 296,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "IN_BOTH_SOURCES"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.IN_BOTH_SOURCES",
+              "nativeQueryRef": "IN_BOTH_SOURCES"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MAGASINS_QUALITY_KPI"
+                        }
+                      },
+                      "Property": "IN_BOTH_SOURCES"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Sum(MAGASINS_QUALITY_KPI.IN_BOTH_SOURCES)",
+              "nativeQueryRef": "Count of IN_BOTH_SOURCES"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "MAGASINS_QUALITY_KPI"
+                      }
+                    },
+                    "Property": "IN_BOTH_SOURCES"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shops not in GI and TH sources'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f62c15316d46686c4eab",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MAGASINS_QUALITY_KPI"
+                  }
+                },
+                "Property": "IN_BOTH_SOURCES"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "af6ed3cb314a8ebe022e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MAGASINS_QUALITY_KPI"
+              }
+            },
+            "Property": "IN_BOTH_SOURCES"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

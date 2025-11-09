@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: DTL_EXO_GI
+    database: DTL_EXO
+    schema: GI
+    tables:
+      - name: MAGASINS
+  - name: DTL_EXO_TH
+    database: DTL_EXO
+    schema: TH
+    tables:
+      - name: MAGASINS

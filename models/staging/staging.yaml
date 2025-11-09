@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: stg_gi_magasins
+    tests:
+      - not_null:
+          column_name: gi_id
+  - name: stg_th_magasins
+    tests:
+      - not_null:
+          column_name: th_id

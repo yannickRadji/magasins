@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: magasins_match
+    description: "Pairing of GI and TH stores (exact or fuzzy matches)"
+  - name: magasins_canonical
+    description: "Unified current view with one row per store_uid"
+    columns:
+      - name: store_uid
+        tests: [not_null, unique]

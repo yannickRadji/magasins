@@ -1,0 +1,144 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "bb0441b7d7a812828b92",
+  "position": {
+    "x": 0,
+    "y": 136.76891615541922,
+    "z": 1000,
+    "height": 324.5807770961145,
+    "width": 498.65030674846628,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "BRAND"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.BRAND",
+              "nativeQueryRef": "BRAND",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MAGASINS_QUALITY_KPI"
+                        }
+                      },
+                      "Property": "BRAND"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(MAGASINS_QUALITY_KPI.BRAND)",
+              "nativeQueryRef": "Count of BRAND"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "MAGASINS_QUALITY_KPI"
+                      }
+                    },
+                    "Property": "BRAND"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Count of BRAND in mapped shops'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ec8edea1acdb1b8a883d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MAGASINS_QUALITY_KPI"
+              }
+            },
+            "Property": "BRAND"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f58f5b0c8ec6ec4b0870",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MAGASINS_QUALITY_KPI"
+                  }
+                },
+                "Property": "BRAND"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "magasins_quality_kpi.bad_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "MAGASINS_QUALITY_KPI",
+			          "ConceptualProperty": "BAD_NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "BAD_NAME=1": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "magasins_quality_kpi.in_both_sources": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "MAGASINS_QUALITY_KPI",
+			          "ConceptualProperty": "IN_BOTH_SOURCES"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "magasins_quality_kpi.dbt_updated_at": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "MAGASINS_QUALITY_KPI",
+			          "ConceptualProperty": "DBT_UPDATED_AT"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DATA_UPDATED_AT": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "magasins_quality_kpi.dbt_valid_from": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "MAGASINS_QUALITY_KPI",
+			          "ConceptualProperty": "DBT_VALID_FROM"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "DATA_VALID_FROM": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

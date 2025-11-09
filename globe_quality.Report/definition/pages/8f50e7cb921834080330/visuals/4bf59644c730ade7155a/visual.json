@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "4bf59644c730ade7155a",
+  "position": {
+    "x": 249.51898734177215,
+    "y": 0,
+    "z": 5001,
+    "height": 136.74936708860758,
+    "width": 242.38987341772153,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "DBT_UPDATED_AT"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.DBT_UPDATED_AT",
+              "nativeQueryRef": "DATA_UPDATED_AT",
+              "displayName": "DATA_UPDATED_AT"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MAGASINS_QUALITY_KPI"
+                  }
+                },
+                "Property": "DBT_UPDATED_AT"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ce1170aacb5092d1a62e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MAGASINS_QUALITY_KPI"
+              }
+            },
+            "Property": "DBT_UPDATED_AT"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

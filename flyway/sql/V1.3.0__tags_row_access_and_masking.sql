@@ -1,0 +1,32 @@
+USE SCHEMA GOLD;
+
+-- Tags
+CREATE OR REPLACE TAG environment COMMENT='Environment tag';
+CREATE OR REPLACE TAG sensitivity COMMENT='Sensitivity tag';
+
+-- RLS by CURRENT_ROLE() and brand from name; ADMIN_ACCESS bypasses all
+CREATE OR REPLACE ROW ACCESS POLICY RLS_BY_BRAND
+AS (name STRING) RETURNS BOOLEAN ->
+(
+  EXISTS (SELECT 1 FROM AUDIT.ADMIN_ACCESS a WHERE a.role_name = CURRENT_ROLE())
+  OR EXISTS (
+    SELECT 1
+    FROM AUDIT.BRAND_ACCESS b
+    WHERE b.role_name = CURRENT_ROLE()
+      AND b.brand = UTIL.BRAND_FROM_NAME(name)
+  )
+);
+
+-- Masking policy aligned with same logic
+CREATE OR REPLACE MASKING POLICY MASK_NAME_BY_ROLE
+AS (name STRING) RETURNS STRING ->
+  CASE
+    WHEN EXISTS (SELECT 1 FROM AUDIT.ADMIN_ACCESS a WHERE a.role_name = CURRENT_ROLE()) THEN name
+    WHEN EXISTS (
+      SELECT 1
+      FROM AUDIT.BRAND_ACCESS b
+      WHERE b.role_name = CURRENT_ROLE()
+        AND b.brand = UTIL.BRAND_FROM_NAME(name)
+    ) THEN name
+    ELSE '***'
+  END;

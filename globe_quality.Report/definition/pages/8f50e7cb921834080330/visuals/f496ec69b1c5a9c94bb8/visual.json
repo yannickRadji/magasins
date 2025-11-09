@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "f496ec69b1c5a9c94bb8",
+  "position": {
+    "x": 498.65030674846628,
+    "y": 7.852760736196319,
+    "z": 2000,
+    "height": 459.38650306748468,
+    "width": 499.30470347648264,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "BRAND"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.BRAND",
+              "nativeQueryRef": "Count of BRAND1"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MAGASINS_QUALITY_KPI"
+                        }
+                      },
+                      "Property": "STORE_UID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(MAGASINS_QUALITY_KPI.STORE_UID)",
+              "nativeQueryRef": "Count of STORE_UID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "MAGASINS_QUALITY_KPI"
+                      }
+                    },
+                    "Property": "STORE_UID"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mapping repartition'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ce650a6b1a520c57d066",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MAGASINS_QUALITY_KPI"
+              }
+            },
+            "Property": "BRAND"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "654c7d94976c0eb14493",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MAGASINS_QUALITY_KPI"
+                  }
+                },
+                "Property": "STORE_UID"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

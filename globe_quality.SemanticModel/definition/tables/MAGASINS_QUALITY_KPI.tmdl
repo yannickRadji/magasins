@@ -1,0 +1,142 @@
+table MAGASINS_QUALITY_KPI
+	lineageTag: d96b60d6-9285-4695-b0fa-9ae8d79d245e
+
+	column BRAND
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: d49cc045-bcd9-4a15-b99b-7e5049bcf950
+		summarizeBy: none
+		sourceColumn: BRAND
+
+		annotation SummarizationSetBy = Automatic
+
+	column STORE_UID
+		dataType: string
+		sourceProviderType: nvarchar(32)
+		lineageTag: 56299573-5ccc-4524-84f6-2b613cb2b67c
+		summarizeBy: none
+		sourceColumn: STORE_UID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: b94a1902-e074-40d7-844c-661cbfd210d0
+		summarizeBy: none
+		sourceColumn: NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAT
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 07e2c578-ded0-4a4a-9765-c6acc2642e2b
+		summarizeBy: sum
+		sourceColumn: LAT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LON
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 7d16dfc6-f5c6-4201-ad80-a7c7cfc6bfdb
+		summarizeBy: sum
+		sourceColumn: LON
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLEAN_NAME
+		dataType: string
+		sourceProviderType: nvarchar(16777216)
+		lineageTag: c4072419-e5b9-40cc-bb39-b238d9903dc8
+		summarizeBy: none
+		sourceColumn: CLEAN_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column IN_BOTH_SOURCES
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal(1, 0)
+		lineageTag: bdf44d29-a326-4107-929c-04d487f4b1df
+		summarizeBy: sum
+		sourceColumn: IN_BOTH_SOURCES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BAD_NAME
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal(1, 0)
+		lineageTag: 9db6ff75-bb63-46ac-a8c2-aafff8fb27b2
+		summarizeBy: sum
+		sourceColumn: BAD_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BAD_BRAND
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal(1, 0)
+		lineageTag: 04cac2af-4742-47a6-afaf-8b05ad954a3b
+		summarizeBy: sum
+		sourceColumn: BAD_BRAND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BAD_GEO
+		dataType: double
+		isNullable: false
+		sourceProviderType: decimal(1, 0)
+		lineageTag: db3fc20d-a63c-492e-959b-c8a2f7deb484
+		summarizeBy: sum
+		sourceColumn: BAD_GEO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DBT_VALID_FROM
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 9f0ae253-e086-4eee-81c4-4f20101f672f
+		summarizeBy: none
+		sourceColumn: DBT_VALID_FROM
+
+		annotation SummarizationSetBy = Automatic
+
+	column DBT_UPDATED_AT
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 40dfe9b9-c14f-440b-9c59-51004d42aa81
+		summarizeBy: none
+		sourceColumn: DBT_UPDATED_AT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MAGASINS_QUALITY_KPI = m
+		mode: directQuery
+		source =
+				let
+				    Source = Snowflake.Databases("PHSDGNU-GJ10338.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="ROLE_YANNICK_RADJI"]),
+				    DWH_DEV_YANNICK_Database = Source{[Name="DWH_DEV_YANNICK",Kind="Database"]}[Data],
+				    GOLD_Schema = DWH_DEV_YANNICK_Database{[Name="GOLD",Kind="Schema"]}[Data],
+				    MAGASINS_QUALITY_KPI_View = GOLD_Schema{[Name="MAGASINS_QUALITY_KPI",Kind="View"]}[Data]
+				in
+				    MAGASINS_QUALITY_KPI_View
+
+	annotation PBI_ResultType = Table
+

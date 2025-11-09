@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "5e4512dec76d816b8eda",
+  "position": {
+    "x": 356.64621676891619,
+    "y": 471.82004089979552,
+    "z": 4000,
+    "height": 248.01635991820041,
+    "width": 344.86707566462167,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MAGASINS_QUALITY_KPI"
+                    }
+                  },
+                  "Property": "BAD_NAME"
+                }
+              },
+              "queryRef": "MAGASINS_QUALITY_KPI.BAD_NAME",
+              "nativeQueryRef": "BAD_NAME=1",
+              "displayName": "BAD_NAME=1"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MAGASINS_QUALITY_KPI"
+                        }
+                      },
+                      "Property": "BAD_NAME"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Sum(MAGASINS_QUALITY_KPI.BAD_NAME)",
+              "nativeQueryRef": "Count of BAD_NAME"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "MAGASINS_QUALITY_KPI"
+                      }
+                    },
+                    "Property": "BAD_NAME"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Unrealistic names'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1e512fd306ce19382b49",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MAGASINS_QUALITY_KPI"
+                  }
+                },
+                "Property": "BAD_NAME"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "44fe82bdf8f16f77726d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MAGASINS_QUALITY_KPI"
+              }
+            },
+            "Property": "BAD_NAME"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+name: magasins_dwh
+version: 1.0.0
+config-version: 2
+profile: magasins_snowflake
+require-dbt-version: [">=1.10.0"]
+
+models:
+  magasins_dwh:
+    +persist_docs: { relation: true, columns: true }
+    staging:
+      +schema: STAGING
+      +materialized: table
+      +tags: ["staging"]
+    silver:
+      +schema: SILVER
+      +materialized: table
+      +tags: ["silver"]
+    gold:
+      +schema: GOLD
+      +materialized: view
+      +secure: true
+      +tags: ["gold"]
+
+snapshots:
+  +target_database: "{{ target.database }}"
+  +target_schema: SILVER
+
+on-run-end:
+  - "{{ log_run_results(results) }}"
