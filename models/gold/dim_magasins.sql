@@ -1,5 +1,5 @@
 {{ config(
-    table_tag = "environment = 'internal'",
+    table_tag = "sensitivity = 'internal'",
 ) }}
 
 select
