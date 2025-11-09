@@ -28,6 +28,9 @@ jobs:
 
       - name: Prepare dbt profiles
         run: |
+          ls
+          pwd
+          ls /home/runner/work/magasins/magasins
           mkdir -p "$HOME/.dbt"
           cp -v profiles.yml "$HOME/.dbt/profiles.yml"
           echo "Placed profiles at $HOME/.dbt/profiles.yml"
