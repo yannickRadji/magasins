@@ -6,8 +6,12 @@ sources:
     schema: GI
     tables:
       - name: MAGASINS
+    config:
+      freshness: { warn_after: { hours: 24 } }
   - name: DTL_EXO_TH
     database: DTL_EXO
     schema: TH
     tables:
       - name: MAGASINS
+    config:
+      freshness: { warn_after: { hours: 24 } }
