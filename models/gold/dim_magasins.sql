@@ -1,3 +1,7 @@
+{{ config(
+    table_tag = "environment = 'internal'",
+) }}
+
 select
   store_uid  as magasin_id,
   name,

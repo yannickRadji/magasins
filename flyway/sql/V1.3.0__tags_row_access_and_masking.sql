@@ -1,7 +1,5 @@
 USE SCHEMA GOLD;
 
--- Tags
-CREATE OR REPLACE TAG environment COMMENT='Environment tag';
 CREATE OR REPLACE TAG sensitivity COMMENT='Sensitivity tag';
 
 -- RLS by CURRENT_ROLE() and brand from name; ADMIN_ACCESS bypasses all
