@@ -26,6 +26,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare dbt profiles
+        run: |
+          mkdir -p "$HOME/.dbt"
+          cp -v .dbt/profiles.yml "$HOME/.dbt/profiles.yml"
+          echo "Placed profiles at $HOME/.dbt/profiles.yml"
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with: { python-version: '3.11' }
@@ -63,6 +69,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Prepare dbt profiles
+        run: |
+          mkdir -p "$HOME/.dbt"
+          cp -v .dbt/profiles.yml "$HOME/.dbt/profiles.yml"
+          echo "Placed profiles at $HOME/.dbt/profiles.yml"
 
       - name: Setup Python
         uses: actions/setup-python@v5
