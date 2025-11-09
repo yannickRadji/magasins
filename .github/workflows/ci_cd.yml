@@ -29,7 +29,7 @@ jobs:
       - name: Prepare dbt profiles
         run: |
           mkdir -p "$HOME/.dbt"
-          cp -v .dbt/profiles.yml "$HOME/.dbt/profiles.yml"
+          cp -v profiles.yml "$HOME/.dbt/profiles.yml"
           echo "Placed profiles at $HOME/.dbt/profiles.yml"
 
       - name: Setup Python
@@ -73,7 +73,7 @@ jobs:
       - name: Prepare dbt profiles
         run: |
           mkdir -p "$HOME/.dbt"
-          cp -v .dbt/profiles.yml "$HOME/.dbt/profiles.yml"
+          cp -v profiles.yml "$HOME/.dbt/profiles.yml"
           echo "Placed profiles at $HOME/.dbt/profiles.yml"
 
       - name: Setup Python
