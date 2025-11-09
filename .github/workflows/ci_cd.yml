@@ -1,0 +1,82 @@
+name: dbt + Flyway CI/CD
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop]
+  workflow_call:
+    inputs:
+      ref:
+        description: 'tag version or commit to deploy (this is not implemented yet so will deploy the last commit of the branch)'
+        required: false
+        type: string
+
+jobs:
+  deploy_dev:
+    needs: ci
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: ./.dbt
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Flyway
+        run: |
+          curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.15.0/flyway-commandline-11.15.0-linux-x64.tar.gz
+          tar -xzf flyway.tar.gz
+          echo "$PWD/flyway-11.15.0" >> $GITHUB_PATH
+
+      - name: Flyway migrate (DEV)
+        run: flyway -configFiles=flyway/conf/dev.conf -locations=filesystem:flyway/migrations/versioned clean -X migrate info
+
+      - name: dbt clean (DEV)
+        run: dbt clean
+
+      - name: dbt build (DEV)
+        run: dbt build -x --target dev
+
+      - name: Attach policies (DEV)
+        run: flyway -configFiles=flyway/conf/dev.conf -locations=filesystem:flyway/migrations/repeatable -X migrate info
+
+  deploy_prod:
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      DBT_PROFILES_DIR: ./.dbt
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Flyway
+        run: |
+          curl -L -o flyway.tar.gz https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.15.0/flyway-commandline-11.15.0-linux-x64.tar.gz
+          tar -xzf flyway.tar.gz
+          echo "$PWD/flyway-11.15.0" >> $GITHUB_PATH
+
+      - name: Flyway migrate (PROD)
+        run: flyway -configFiles=flyway/conf/prod.conf -locations=filesystem:flyway/migrations/versioned clean -X migrate info
+
+      - name: dbt clean (PROD)
+        run: dbt clean
+
+      - name: dbt build (PROD)
+        run: dbt build -x --target dev
+
+      - name: Attach policies (PROD)
+        run: flyway -configFiles=flyway/conf/prod.conf -locations=filesystem:flyway/migrations/repeatable -X migrate info

@@ -1,0 +1,26 @@
+magasins_snowflake:
+  target: prod
+  outputs:
+    dev:
+      type: snowflake
+      account: QYXYVFY-BE09150
+      user: YANNICK_RADJI
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ROLE_YANNICK_RADJI
+      database: DWH_DEV_YANNICK
+      warehouse: COMPUTE_WH
+      schema: STAGING
+      query_tag: "dbt_dev"
+      threads: 4
+
+    prod:
+      type: snowflake
+      account: QYXYVFY-BE09150
+      user: YANNICK_RADJI
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ROLE_YANNICK_RADJI
+      database: DWH_PROD_YANNICK
+      warehouse: COMPUTE_WH
+      schema: STAGING
+      query_tag: "dbt_prod"
+      threads: 8
