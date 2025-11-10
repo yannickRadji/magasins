@@ -2,17 +2,19 @@
 
 This project builds a small but production-style Snowflake data stack with:
 
-Ingestion sources: DTL_EXO (schemas GI, TH) already provided.
-Transformation & modeling: dbt 1.10 (staging → silver → gold), with tests, snapshot, freshness, policies attached by dbt, tags, and audit logging.
-RLS/DDM: Row-level access by BRAND (AUCHAN, CARREFOUR, …); masking of NAME for non-entitled roles; CURRENT_ROLE() driven.
-Governance: Database roles (DBR_READ/WRITE/ADMIN + brand roles), grants, and usage without ACCOUNTADMIN.
-Migrations: Flyway OSS 11.14 (DDL only: schemas, roles/grants, policy objects). 
-Matching logic (GI↔TH): Fuzzy match without cartesian blowups (blocking + scoring + QUALIFY).
-Brand detection: No UDFs; dbt macro on normalized names, catching e.g. “auchan hypermarche …”.
-KPIs: completeness/coherence surfaced for the Power BI report (provided).
+- Ingestion sources: DTL_EXO (schemas GI, TH) already provided.
+- Transformation & modeling: dbt 1.10 (staging → silver → gold), with tests, snapshot, freshness, policies attached by dbt, tags, and audit logging.
+- RLS/DDM: Row-level access by BRAND (AUCHAN, CARREFOUR, …); masking of NAME for non-entitled roles; CURRENT_ROLE() driven.
+- Governance: Database roles (DBR_READ/WRITE/ADMIN + brand roles), grants, and usage without ACCOUNTADMIN.
+- Migrations: Flyway OSS 11.14 (DDL only: schemas, roles/grants, policy objects). 
+- Matching logic (GI↔TH): Fuzzy match without cartesian blowups (blocking + scoring + QUALIFY).
+- Brand detection: No UDFs; dbt macro on normalized names, catching e.g. “auchan hypermarche …”.
+- KPIs: completeness/coherence surfaced for the Power BI report (provided).
 
 # Goal
 Consolidate two raw sources of stores (GI.MAGASINS, TH.MAGASINS) into a canonical view with de-duplicated stores, brand attribution, and secure consumption (internal analysts vs external shop/brand owners).
+
+--------------------------------------------------
 
 # How this met the exercices requirement
 | Requirement (exercise)                                                         | Implementation                                                                                                                                                               |
@@ -44,7 +46,7 @@ With the commands "dbt docs generate", then "dbt docs serve" you can see the def
 The shops brand listed has been almost all correctly mapped ![alt text](img/mappedData.png).
 
 The data quality reports show us that even though many shops has been mapped to brand as our list is partial many rows are still not mapped. Nevertheless the data quality is poor as names and geography are wrongly enter/unrealistic.
-![alt text](powerbi.png)
+![alt text](img/powerbi.png)
 
 We have a clear audit of when each row has been added, modified and replaced thanks to DBT's snaphot feature (see image below)
 ![alt text](img/image.png)
