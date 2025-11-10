@@ -90,7 +90,6 @@ scored as (
 select
   gi_id, th_id,
   gi_name, th_name,
-  /* geo columns are optional downstream; add if needed */
   null::float as gi_lat,
   null::float as gi_lon,
   null::float as th_lat,

@@ -115,6 +115,11 @@ table MAGASINS_QUALITY_KPI
 		summarizeBy: none
 		sourceColumn: DBT_VALID_FROM
 
+		variation Variation
+			isDefault
+			relationship: 4a19a946-4ff7-459f-8971-36dcc24ca099
+			defaultHierarchy: LocalDateTable_56893ba9-de5f-4c6e-848b-b2ac60d1162d.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	column DBT_UPDATED_AT
@@ -125,10 +130,15 @@ table MAGASINS_QUALITY_KPI
 		summarizeBy: none
 		sourceColumn: DBT_UPDATED_AT
 
+		variation Variation
+			isDefault
+			relationship: ef903ed9-9a2d-4993-8401-457caa9cc7f1
+			defaultHierarchy: LocalDateTable_2637e300-5487-426b-a0dd-5757c118191a.'Date Hierarchy'
+
 		annotation SummarizationSetBy = Automatic
 
 	partition MAGASINS_QUALITY_KPI = m
-		mode: directQuery
+		mode: import
 		source =
 				let
 				    Source = Snowflake.Databases("PHSDGNU-GJ10338.snowflakecomputing.com","COMPUTE_WH",[Implementation="2.0", Role="ROLE_YANNICK_RADJI"]),

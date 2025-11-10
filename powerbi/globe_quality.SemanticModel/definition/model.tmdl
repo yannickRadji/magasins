@@ -13,6 +13,9 @@ annotation PBI_QueryOrder = ["MAGASINS_QUALITY_KPI"]
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table MAGASINS_QUALITY_KPI
+ref table DateTableTemplate_b139c4b2-f9cf-42cc-9de8-d9c63dcf148f
+ref table LocalDateTable_56893ba9-de5f-4c6e-848b-b2ac60d1162d
+ref table LocalDateTable_2637e300-5487-426b-a0dd-5757c118191a
 
 ref cultureInfo en-US
 

@@ -1,0 +1,10 @@
+relationship 4a19a946-4ff7-459f-8971-36dcc24ca099
+	joinOnDateBehavior: datePartOnly
+	fromColumn: MAGASINS_QUALITY_KPI.DBT_VALID_FROM
+	toColumn: LocalDateTable_56893ba9-de5f-4c6e-848b-b2ac60d1162d.Date
+
+relationship ef903ed9-9a2d-4993-8401-457caa9cc7f1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: MAGASINS_QUALITY_KPI.DBT_UPDATED_AT
+	toColumn: LocalDateTable_2637e300-5487-426b-a0dd-5757c118191a.Date
+
